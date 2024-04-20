@@ -1,9 +1,23 @@
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>Task page</div>
-  )
+import {Task} from '../api/tasks/route'
+const getTasks = async () => {
+   const response = await fetch('http://localhost:3000/api/tasks', {
+      method: 'GET',
+      cache :'no-store'
+   });
+   return await response.json();
 }
+
+const Taskpage = async () => {
+   const tasks = (await getTasks()).tasks as Task[]; 
+  return (
+    <div>
+       <div>Task page</div>
+       <div>
+         {tasks.map((task)=>(
+            <div key={task.id}>{task.name}</div>
+         ))}
+       </div>
+    </div>  
+   )}
 // ﾍﾟｰｼﾞｺﾝﾎﾟｰﾈﾝﾄは必ずdefault exportすること
-export default page
+export default Taskpage
