@@ -1,5 +1,5 @@
 const page = () => {
-  throw new Error()
+  // throw new Error()
   return (
     <div>Hello Next.js</div>
   )
